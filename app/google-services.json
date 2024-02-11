@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "785788251809",
+    "project_id": "ev-station-map-app",
+    "storage_bucket": "ev-station-map-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:785788251809:android:6037102dac3ccda96a4ae0",
+        "android_client_info": {
+          "package_name": "com.technopradyumn.evstationmap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR3zLioEy1xzZdJYZ5VblgDK9-gUzYbRY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

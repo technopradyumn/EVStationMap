@@ -1,0 +1,17 @@
+<!-- res/drawable/custom_location_marker.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Circular background -->
+    <item>
+        <shape
+            android:shape="oval">
+            <solid android:color="#41039BE5" />
+            <!-- Adjust the size of the stroke or remove this line if no border is needed -->
+
+        </shape>
+    </item>
+
+    <!-- Location icon in the center -->
+    <item
+        android:drawable="@drawable/baseline_electrical_services_24"
+        android:gravity="center" />
+</layer-list>
