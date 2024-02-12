@@ -14,7 +14,6 @@ import androidx.core.view.WindowInsetsCompat;
 import com.technopradyumn.evstationmap.databinding.ActivityMoreBinding;
 
 public class MoreActivity extends AppCompatActivity {
-
     ActivityMoreBinding binding;
 
     @Override
@@ -37,30 +36,10 @@ public class MoreActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        binding.pradyumnGithub.setOnClickListener(v -> {
-            openLinkInBrowser(this, "https://github.com/technopradyumn");
+        binding.developerTxt.setOnClickListener(v -> {
+            Intent intent = new Intent(MoreActivity.this, DeveloperDetailActivity.class);
+            startActivity(intent);
         });
-
-        binding.pradyumnLinkedIn.setOnClickListener(v -> {
-            openLinkInBrowser(this, "https://www.linkedin.com/in/pradyumn-prajapati-1755021a9/");
-        });
-
-//        binding.pradyumnGithub.setOnClickListener(v -> {
-//            openLinkInBrowser(this, "");
-//        });
-//
-//        binding.pradyumnLinkedIn.setOnClickListener(v -> {
-//            openLinkInBrowser(this, "");
-//        });
-//
-//        binding.pradyumnGithub.setOnClickListener(v -> {
-//            openLinkInBrowser(this, "");
-//        });
-//
-//        binding.pradyumnLinkedIn.setOnClickListener(v -> {
-//            openLinkInBrowser(this, "");
-//        });
-
 
     }
 }
