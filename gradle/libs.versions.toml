@@ -3,6 +3,8 @@ agp = "8.2.2"
 firebaseAuth = "22.3.1"
 firebaseBom = "32.7.1"
 firebaseFirestore = "24.10.1"
+firebaseStorage = "20.3.0"
+glide = "4.16.0"
 googleMapsServices = "2.2.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -20,9 +22,12 @@ navigationUi = "2.7.6"
 
 [libraries]
 android-maps-utils = { module = "com.google.maps.android:android-maps-utils", version.ref = "googleMapsServices" }
+compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebaseAuth" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-firestore = { module = "com.google.firebase:firebase-firestore", version.ref = "firebaseFirestore" }
+firebase-storage = { module = "com.google.firebase:firebase-storage", version.ref = "firebaseStorage" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 google-maps-services = { module = "com.google.maps:google-maps-services", version.ref = "googleMapsServices" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
