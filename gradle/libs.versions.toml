@@ -1,11 +1,13 @@
 [versions]
 agp = "8.2.2"
+androidMapsUtils = "3.8.0"
 firebaseAuth = "22.3.1"
-firebaseBom = "32.7.1"
-firebaseFirestore = "24.10.1"
+firebaseBom = "32.7.2"
+firebaseFirestore = "24.10.2"
 firebaseStorage = "20.3.0"
 glide = "4.16.0"
-googleMapsServices = "2.2.0"
+googleMapsServices = "2.2.1"
+googleMapsServicesVersion = "2.2.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
@@ -17,11 +19,12 @@ googleAndroidLibrariesMapsplatformSecretsGradlePlugin = "2.0.1"
 playServicesMaps = "18.2.0"
 playServicesLocation = "21.1.0"
 cardview = "1.0.0"
-navigationFragment = "2.7.6"
-navigationUi = "2.7.6"
+navigationFragment = "2.7.7"
+navigationUi = "2.7.7"
 
 [libraries]
 android-maps-utils = { module = "com.google.maps.android:android-maps-utils", version.ref = "googleMapsServices" }
+android-maps-utils-v380 = { module = "com.google.maps.android:android-maps-utils", version.ref = "androidMapsUtils" }
 compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebaseAuth" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
@@ -29,6 +32,7 @@ firebase-firestore = { module = "com.google.firebase:firebase-firestore", versio
 firebase-storage = { module = "com.google.firebase:firebase-storage", version.ref = "firebaseStorage" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 google-maps-services = { module = "com.google.maps:google-maps-services", version.ref = "googleMapsServices" }
+google-maps-services-v220 = { module = "com.google.maps:google-maps-services", version.ref = "googleMapsServicesVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }

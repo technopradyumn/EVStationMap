@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     id 'com.google.gms.google-services'
-    alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -47,19 +47,13 @@ dependencies {
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
 
-
-//    implementation 'com.google.firebase:firebase-bom:32.7.1'
-
-    implementation libs.google.maps.services
+    implementation libs.google.maps.services.v220
+    implementation libs.android.maps.utils.v380
     implementation libs.firebase.firestore
     implementation libs.play.services.maps
-    implementation libs.android.maps.utils
-    implementation(libs.firebase.auth)
+    implementation libs.firebase.auth
     implementation libs.firebase.storage
 
     implementation libs.glide
-    annotationProcessor libs.compiler
-
-
 
 }
