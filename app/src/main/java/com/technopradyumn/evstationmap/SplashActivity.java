@@ -11,7 +11,7 @@ import com.technopradyumn.evstationmap.databinding.ActivitySplashBinding;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static final int SPLASH_DELAY = 2000; // 2 seconds
+    private static final int SPLASH_DELAY = 1000;
 
     ActivitySplashBinding binding;
 

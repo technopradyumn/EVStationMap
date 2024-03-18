@@ -2,8 +2,6 @@ package com.technopradyumn.evstationmap;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -32,23 +30,20 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        binding.bottomNavView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int menuItemId = item.getItemId();
+        binding.bottomNavView.setOnItemSelectedListener((NavigationBarView.OnItemSelectedListener) item -> {
+            int menuItemId = item.getItemId();
 
-                if (menuItemId == R.id.home) {
-                    replaceFragment(new HomeFragment());
-                    return true;
-                } else if (menuItemId == R.id.profile) {
-                    replaceFragment(new ProfileFragment());
-                    return true;
-                }else{
-                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
-                    startActivity(intent);
-                }
+            if (menuItemId == R.id.home) {
+                replaceFragment(new HomeFragment());
                 return true;
+            } else if (menuItemId == R.id.profile) {
+                replaceFragment(new ProfileFragment());
+                return true;
+            }else{
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(intent);
             }
+            return true;
         });
 
     }

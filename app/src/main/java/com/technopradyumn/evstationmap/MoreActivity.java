@@ -22,7 +22,7 @@ public class MoreActivity extends AppCompatActivity {
         binding = ActivityMoreBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.backBtn.setOnClickListener(iew -> {
+        binding.backBtn.setOnClickListener(view -> {
             onBackPressed();
         });
 
@@ -36,9 +36,9 @@ public class MoreActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        binding.developerTxt.setOnClickListener(v -> {
-            Intent intent = new Intent(MoreActivity.this, DeveloperDetailActivity.class);
-            startActivity(intent);
+        binding.developerTxt.setOnClickListener(view -> {
+//            Intent intent = new Intent(MoreActivity.this, DeveloperDetailActivity.class);
+//            startActivity(intent);
         });
 
     }
