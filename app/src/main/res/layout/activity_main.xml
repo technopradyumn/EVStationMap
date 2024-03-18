@@ -80,6 +80,7 @@
         android:backgroundTint="#361E88E5"
         android:fadingEdgeLength="30dp"
         app:cardCornerRadius="50dp"
+        app:strokeWidth="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
         app:layout_constraintStart_toStartOf="@+id/constraintLayout">
@@ -88,7 +89,6 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            android:background="@android:color/transparent"
             android:src="@drawable/circular_marker_icon" />
 
     </com.google.android.material.card.MaterialCardView>

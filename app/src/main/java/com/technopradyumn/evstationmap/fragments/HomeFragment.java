@@ -18,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.technopradyumn.evstationmap.R;
 //import com.technopradyumn.evstationmap.adapter.StationAdapter;
+import com.technopradyumn.evstationmap.adapter.StationAdapter;
 import com.technopradyumn.evstationmap.databinding.FragmentHomeBinding;
 import com.technopradyumn.evstationmap.model.StationModel;
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class HomeFragment extends Fragment {
     private FirebaseFirestore db;
     private TextView greenhouseGasTextView, energySavingsTextView,airPollutionTextView;
     private RecyclerView recyclerView;
-//    private StationAdapter adapter;
+    private StationAdapter adapter;
     private FirebaseFirestore firestore;
 
     @Override
@@ -38,38 +39,38 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-//        db = FirebaseFirestore.getInstance();
-//
+        db = FirebaseFirestore.getInstance();
+
 //        loadDataFromFirestore();
 
-//        firestore = FirebaseFirestore.getInstance();
-//
-//        recyclerView = view.findViewById(R.id.recyclerView);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//        adapter = new StationAdapter();
-//        recyclerView.setAdapter(adapter);
-//
-//        loadDataFromFirestore();
+        firestore = FirebaseFirestore.getInstance();
+
+        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new StationAdapter();
+        recyclerView.setAdapter(adapter);
+
+        loadDataFromFirestore();
 
         return view;
     }
 
-//    private void loadDataFromFirestore() {
-////        // Assuming you have a "stations" collection in Firestore
-//        firestore.collection("stations")
-//                .get()
-//                .addOnSuccessListener(queryDocumentSnapshots -> {
-//                    List<StationModel> stations = new ArrayList<>();
-//                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-//                        StationModel station = document.toObject(StationModel.class);
-//                        stations.add(station);
-//                    }
-//                    adapter.setStations(stations);
-//                })
-//                .addOnFailureListener(e -> {
-//                    // Handle failure
-//                });
-//    }
+    private void loadDataFromFirestore() {
+        // Assuming you have a "stations" collection in Firestore
+        firestore.collection("stations")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<StationModel> stations = new ArrayList<>();
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        StationModel station = document.toObject(StationModel.class);
+                        stations.add(station);
+                    }
+                    adapter.setStations(stations);
+                })
+                .addOnFailureListener(e -> {
+                    // Handle failure
+                });
+    }
 
     @Override
     public void onDestroyView() {
