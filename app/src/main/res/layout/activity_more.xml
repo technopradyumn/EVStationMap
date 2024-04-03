@@ -56,22 +56,10 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/developerTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
-                android:text="Developer Detail"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
                 android:id="@+id/feedbackTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="100dp"
                 android:layout_marginBottom="16dp"
                 android:text="Feedback"
                 android:textColor="@color/white"
@@ -79,7 +67,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/privacyPolicyTxt"
                 app:layout_constraintEnd_toEndOf="@+id/privacyPolicyTxt"
                 app:layout_constraintStart_toStartOf="@+id/privacyPolicyTxt"
-                app:layout_constraintTop_toBottomOf="@+id/developerTxt" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/privacyPolicyTxt"

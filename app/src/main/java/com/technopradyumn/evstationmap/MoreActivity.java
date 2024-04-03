@@ -36,10 +36,5 @@ public class MoreActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        binding.developerTxt.setOnClickListener(view -> {
-//            Intent intent = new Intent(MoreActivity.this, DeveloperDetailActivity.class);
-//            startActivity(intent);
-        });
-
     }
 }
