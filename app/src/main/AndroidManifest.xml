@@ -27,9 +27,6 @@
             android:name=".StationActivity"
             android:exported="false" />
         <activity
-            android:name=".DeveloperDetailActivity"
-            android:exported="false" />
-        <activity
             android:name=".FullImageActivity"
             android:exported="false" />
         <activity
