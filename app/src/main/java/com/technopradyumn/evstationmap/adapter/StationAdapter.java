@@ -49,10 +49,12 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationV
         private TextView nameTextView;
         private ImageView imageView;
         private TextView availableChargingPointsTextView;
+        private TextView supplierName;
 
         public StationViewHolder(@NonNull View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.nameTextView);
+            supplierName = itemView.findViewById(R.id.supplierName);
             availableChargingPointsTextView = itemView.findViewById(R.id.availableChargingPointsTextView);
             imageView = itemView.findViewById(R.id.imageView);
             itemView.setOnClickListener(this);
@@ -60,6 +62,7 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationV
 
         public void bind(StationModel station) {
             nameTextView.setText(station.getName());
+            supplierName.setText(station.getSupplierName());
             availableChargingPointsTextView.setText(String.valueOf(station.getAvailableChargingPoints()));
 //            Glide.with(itemView.getContext())
 //                    .load(station.getImageUrl())

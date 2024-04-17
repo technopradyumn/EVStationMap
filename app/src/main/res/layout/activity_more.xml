@@ -59,15 +59,15 @@
                 android:id="@+id/feedbackTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
                 android:text="Feedback"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/privacyPolicyTxt"
                 app:layout_constraintEnd_toEndOf="@+id/privacyPolicyTxt"
                 app:layout_constraintStart_toStartOf="@+id/privacyPolicyTxt"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
             <TextView
                 android:id="@+id/privacyPolicyTxt"
@@ -75,11 +75,25 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="64dp"
                 android:text="Privacy Policy"
-                android:textColor="@color/white"
+                android:textColor="#0563B6"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="Welcome to EV Station Map App!\n\nAt EV Station Map App, we're committed to revolutionizing the way you power your electric vehicle (EV). We understand that finding convenient and reliable charging stations is crucial for every EV owner. That's why we've created a platform that simplifies the process of locating and accessing charging stations wherever your journey takes you.\n\nOur mission is to accelerate the transition to sustainable transportation by providing seamless access to EV charging infrastructure. Whether you're planning a road trip or simply need to top up your charge during your daily commute, EV Station Map App is your trusted companion on the road to a greener future.\n\nKey Features:\n\n1. Comprehensive Coverage:\nWe've partnered with a vast network of charging station providers to ensure you have access to thousands of charging points across the country.\n\n2. Real-Time Updates:\nOur app provides real-time information on the availability, status, and pricing of charging stations, so you can plan your route with confidence.\n\n3. User-Friendly Interface:\nWith our intuitive interface, finding nearby charging stations and navigating to them is easier than ever before.\n\n4. Customized Preferences:\nTailor your charging experience to suit your needs with customizable filters for charging speed, connector type, and more.\n\n5. Seamless Payments:\nEnjoy hassle-free payments directly within the app, eliminating the need for multiple accounts and membership cards.\n\n6. Community Engagement:\nJoin a community of like-minded EV enthusiasts, share tips, and contribute to the growth of sustainable transportation.\n\nJoin us in shaping the future of mobility. Download EV Station Map App today and take the first step towards a cleaner, greener tomorrow!"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

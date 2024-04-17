@@ -2,6 +2,8 @@ package com.technopradyumn.evstationmap.fragments;
 
 import static com.technopradyumn.evstationmap.model.Constants.COLLECTION_ENVIRONMENTAL_DATA;
 import static com.technopradyumn.evstationmap.model.Constants.DOCUMENT_STATISTICS;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.technopradyumn.evstationmap.MapsActivity;
 import com.technopradyumn.evstationmap.R;
 //import com.technopradyumn.evstationmap.adapter.StationAdapter;
 import com.technopradyumn.evstationmap.adapter.StationAdapter;
@@ -38,6 +41,10 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+
+        binding.mapActivityBtn.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), MapsActivity.class));
+        });
 
         db = FirebaseFirestore.getInstance();
 

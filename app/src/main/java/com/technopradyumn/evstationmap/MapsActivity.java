@@ -44,6 +44,7 @@ import com.technopradyumn.evstationmap.model.StationModel;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
@@ -98,20 +99,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     .position(userLocation)
                                     .title("Your Location");
                             mMap.addMarker(markerOptions);
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
+
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 10.5f));
 
                             CameraPosition cameraPosition = new CameraPosition.Builder()
                                     .target(userLocation)
+                                    .zoom(10.5f)
                                     .build();
 
                             loadStationsFromViewModel();
                             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-                            mMap.addMarker(markerOptions);
 
                             mMap.setOnMarkerClickListener(marker -> {
                                 LatLng destination = marker.getPosition();
                                 drawPath(userLocation, destination);
-//                                drawRealPath(userLocation, destination);
+//                               drawRealPath(userLocation, destination);
                                 return false;
                             });
 
@@ -121,6 +123,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Toast.makeText(this, "Location permission not granted", Toast.LENGTH_SHORT).show();
         }
     }
+
 
 
     private void loadStationsFromViewModel() {
@@ -146,8 +149,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .icon(BitmapDescriptorFactory.fromBitmap(createBitmapFromView(customMarkerView)));
 
         markerOptions.infoWindowAnchor(0.5f, 0.5f);
-        markerOptions.anchor(0.5f, 0.5f);
-        mMap.addMarker(markerOptions).showInfoWindow();
+        markerOptions.anchor(0.9f, 0.9f);
+        Objects.requireNonNull(mMap.addMarker(markerOptions)).showInfoWindow();
     }
 
     private Bitmap createBitmapFromView(View view) {

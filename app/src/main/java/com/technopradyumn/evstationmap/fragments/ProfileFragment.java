@@ -21,6 +21,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.technopradyumn.evstationmap.FullImageActivity;
 import com.technopradyumn.evstationmap.LogInActivity;
+import com.technopradyumn.evstationmap.MyBookedSlotActivity;
 import com.technopradyumn.evstationmap.R;
 import com.technopradyumn.evstationmap.databinding.FragmentProfileBinding;
 import com.technopradyumn.evstationmap.model.UserModel;
@@ -72,6 +73,11 @@ public class ProfileFragment extends Fragment {
             } else {
                 Toast.makeText(getContext(), "Image not available", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        binding.mySlotBtn.setOnClickListener(v ->{
+            Intent intent = new Intent(requireContext(), MyBookedSlotActivity.class);
+            startActivity(intent);
         });
 
         changeImage.setOnClickListener(v -> openGallery());

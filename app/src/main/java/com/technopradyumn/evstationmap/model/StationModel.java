@@ -6,16 +6,18 @@ public class StationModel {
     private int availableChargingPoints;
     private double latitude;
     private double longitude;
+    private String supplierName;
 
     public StationModel() {
     }
 
-    public StationModel(String stationId, String name, int availableChargingPoints,double latitude, double longitude) {
+    public StationModel(String stationId, String name, int availableChargingPoints, double latitude, double longitude, String supplierName) {
         this.stationId = stationId;
         this.name = name;
         this.availableChargingPoints = availableChargingPoints;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.supplierName = supplierName;
     }
 
     public String getStationId() {
@@ -56,5 +58,13 @@ public class StationModel {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public String getSupplierName() {
+        return supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
     }
 }

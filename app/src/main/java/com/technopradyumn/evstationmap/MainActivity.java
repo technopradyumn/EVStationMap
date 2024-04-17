@@ -20,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
 
-        binding.fab.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, MapsActivity.class);
-            startActivity(intent);
-        });
+//        binding.fab.setOnClickListener(view -> {
+//            Intent intent = new Intent(MainActivity.this, SlotBookingActivity.class);
+//            startActivity(intent);
+//        });
 
         binding.moreBtn.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, MoreActivity.class);
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(new ProfileFragment());
                 return true;
             }else{
-                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                Intent intent = new Intent(MainActivity.this, SlotBookingActivity.class);
                 startActivity(intent);
             }
             return true;
