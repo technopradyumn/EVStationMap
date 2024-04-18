@@ -3,17 +3,13 @@ package com.technopradyumn.evstationmap;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.technopradyumn.evstationmap.databinding.ActivitySlotBookingBinding;
 import com.technopradyumn.evstationmap.model.BookedSlot;
-
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;

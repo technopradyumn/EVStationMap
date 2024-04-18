@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.technopradyumn.evstationmap.MapsActivity;
 import com.technopradyumn.evstationmap.R;
+import com.technopradyumn.evstationmap.SingleStationMapsActivity;
 import com.technopradyumn.evstationmap.StationActivity;
 import com.technopradyumn.evstationmap.model.StationModel;
 import java.util.ArrayList;
@@ -76,11 +77,13 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationV
             int position = getAdapterPosition();
             if (position != RecyclerView.NO_POSITION) {
                 StationModel station = stations.get(position);
-                // Start StationActivity and pass station ID
-                Intent intent = new Intent(v.getContext(), MapsActivity.class);
-                intent.putExtra("stationId", station.getStationId());
+                Intent intent = new Intent(v.getContext(), SingleStationMapsActivity.class);
+                intent.putExtra("stationName", station.getName());
+                intent.putExtra("stationLatitude", station.getLatitude());
+                intent.putExtra("stationLongitude", station.getLongitude());
                 v.getContext().startActivity(intent);
             }
         }
+
     }
 }

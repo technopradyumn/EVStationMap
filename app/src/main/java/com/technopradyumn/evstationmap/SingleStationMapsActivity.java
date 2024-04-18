@@ -2,29 +2,21 @@ package com.technopradyumn.evstationmap;
 
 import static com.technopradyumn.evstationmap.model.Constants.API_KEY;
 
-import android.content.Context;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentActivity;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -34,60 +26,71 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.maps.DirectionsApi;
 import com.google.maps.GeoApiContext;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.TravelMode;
-import com.technopradyumn.evstationmap.databinding.ActivityMapsBinding;
-import com.technopradyumn.evstationmap.model.StationModel;
+import com.technopradyumn.evstationmap.databinding.ActivitySingleStationMapsBinding;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class SingleStationMapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
     private GoogleMap mMap;
-    private ActivityMapsBinding binding;
-    private StationViewModel stationViewModel;
-
+    private ActivitySingleStationMapsBinding binding;
     private Polyline pathPolyline;
-
-    GoogleMapOptions options = new GoogleMapOptions();
-
+    private FirebaseFirestore firestore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMapsBinding.inflate(getLayoutInflater());
+
+        binding = ActivitySingleStationMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        stationViewModel = new ViewModelProvider(this).get(StationViewModel.class);
+        firestore = FirebaseFirestore.getInstance();
 
-        ImageView changeMapView = findViewById(R.id.changeMapView);
-
-        changeMapView.setOnClickListener(view -> {
-            if (mMap.getMapType() == GoogleMap.MAP_TYPE_HYBRID) {
-                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-            } else {
-                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-            }
-        });
-
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         assert mapFragment != null;
         mapFragment.getMapAsync(this);
-
     }
 
     @Override
-    public void onMapReady(@NonNull GoogleMap googleMap) {
+    public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        // Get the station details passed from the previous activity
+        String name = getIntent().getStringExtra("stationName");
+        double latitude = getIntent().getDoubleExtra("stationLatitude", 0);
+        double longitude = getIntent().getDoubleExtra("stationLongitude", 0);
+        LatLng stationLatLng = new LatLng(latitude, longitude);
+
+        // Add a marker for the station
+        View customMarkerView = getLayoutInflater().inflate(R.layout.custom_marker_layout, null);
+        TextView titleTextView = customMarkerView.findViewById(R.id.titleTextView);
+        ImageView markerImageView = customMarkerView.findViewById(R.id.markerImageView);
+        titleTextView.setText(name);
+        markerImageView.setImageResource(R.drawable.circular_marker_icon);
+
+        MarkerOptions markerOp = new MarkerOptions()
+                .position(stationLatLng)
+                .icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(customMarkerView)));
+
+        markerOp.infoWindowAnchor(0.5f, 0.5f);
+        markerOp.anchor(0.9f, 0.9f);
+        Objects.requireNonNull(mMap.addMarker(markerOp)).showInfoWindow();
+
+
+        // Move camera to the station location
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(stationLatLng, 10.5f));
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
 
-            // Get the user's last known location using Fused Location Provider
             LocationRequest locationRequest = LocationRequest.create();
             locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
             LocationServices.getFusedLocationProviderClient(this)
@@ -107,9 +110,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     .zoom(10.5f)
                                     .build();
 
-                            loadStationsFromViewModel();
                             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
                             mMap.setOnMarkerClickListener(marker -> {
                                 LatLng destination = marker.getPosition();
                                 drawPath(userLocation, destination);
@@ -122,38 +123,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         } else {
             Toast.makeText(this, "Location permission not granted", Toast.LENGTH_SHORT).show();
         }
+
     }
 
 
-
-    private void loadStationsFromViewModel() {
-        stationViewModel.getStations().observe(this, stations -> {
-            for (StationModel station : stations) {
-                addMarkerToMap(station);
-            }
-        });
-    }
-
-    private void addMarkerToMap(StationModel station) {
-        LatLng stationLocation = new LatLng(station.getLatitude(), station.getLongitude());
-
-        // Inflate custom marker layout
-        View customMarkerView = getLayoutInflater().inflate(R.layout.custom_marker_layout, null);
-
-        // Set title and distance on the custom marker view
-        TextView titleTextView = customMarkerView.findViewById(R.id.titleTextView);
-        titleTextView.setText(station.getName() + "\nAvailable Point - " + station.getAvailableChargingPoints());
-
-        MarkerOptions markerOptions = new MarkerOptions()
-                .position(stationLocation)
-                .icon(BitmapDescriptorFactory.fromBitmap(createBitmapFromView(customMarkerView)));
-
-        markerOptions.infoWindowAnchor(0.5f, 0.5f);
-        markerOptions.anchor(0.9f, 0.9f);
-        Objects.requireNonNull(mMap.addMarker(markerOptions)).showInfoWindow();
-    }
-
-    private Bitmap createBitmapFromView(View view) {
+    private Bitmap createDrawableFromView(View view) {
         view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
         Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
@@ -167,25 +141,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             pathPolyline.remove();
         }
 
-        // Perform any necessary calculations to obtain the route (e.g., using Directions API)
-
-        // For demonstration purposes, let's create a Polyline with a few intermediate points
-        LatLng intermediate1 = new LatLng((origin.latitude + destination.latitude) / 2, (origin.longitude + destination.longitude) / 2);
-        LatLng intermediate2 = new LatLng((intermediate1.latitude + destination.latitude) / 2, (intermediate1.longitude + destination.longitude) / 2);
-
-        // Add the Polyline to the map
         pathPolyline = mMap.addPolyline(new PolylineOptions()
-                .add(origin, intermediate1, intermediate2, destination)
+                .add(origin, destination)
                 .width(5)
                 .color(Color.BLUE));
 
-        // Move the camera to show the entire path
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         builder.include(origin);
         builder.include(destination);
         LatLngBounds bounds = builder.build();
         mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 50));
     }
+
+
 
 //    private void drawRealPath(LatLng origin, LatLng destination) {
 //        if (pathPolyline != null) {
@@ -229,40 +197,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //            }
 //        }).start();
 //    }
-
-    private List<LatLng> decodePolyline(String encodedPolyline) {
-        List<LatLng> polyline = new ArrayList<>();
-        int index = 0, len = encodedPolyline.length();
-        int lat = 0, lng = 0;
-
-        while (index < len) {
-            int b, shift = 0, result = 0;
-            do {
-                b = encodedPolyline.charAt(index++) - 63;
-                result |= (b & 0x1F) << shift;
-                shift += 5;
-            } while (b >= 0x20);
-
-            int dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
-            lat += dlat;
-
-            shift = 0;
-            result = 0;
-            do {
-                b = encodedPolyline.charAt(index++) - 63;
-                result |= (b & 0x1F) << shift;
-                shift += 5;
-            } while (b >= 0x20);
-
-            int dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
-            lng += dlng;
-
-            LatLng p = new LatLng((double) lat / 1E5, (double) lng / 1E5);
-            polyline.add(p);
-        }
-
-        return polyline;
-    }
 
 
 }
