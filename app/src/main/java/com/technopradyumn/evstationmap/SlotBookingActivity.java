@@ -59,13 +59,23 @@ public class SlotBookingActivity extends AppCompatActivity {
 
         binding.spinnerCar.setSelection(0);
 
-        String[] chargerOptions = {"Select Charger Type", "7.2 kW AC - Fast", "3.6 kW DC - Superfast", "60D","8.9 kW DC - Superfast"};
+        String[] chargerOptions = {"Select Charger Type", "7.2 kW - Superfast(3Rs./minute)", "3.6 kW  - fast (2Rs./Minute)", "60D 1.5Rs./minute","8.9 kW DC - Superfast (4Rs./minute)"};
 
         ArrayAdapter<String> chargerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, chargerOptions);
         chargerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         binding.spinnerChargertype.setAdapter(chargerAdapter);
         binding.spinnerChargertype.setSelection(0);
+
+//        String[] stationOptions = {"Select Station", "Tata Charging Station","Powerbank Charging Station","Electric Vehicle Charging Station 2", "Chandigarh EV Station 2", "Electric Vehicle Charging Station","Chandigarh EV Station","GLIDA Charging Station","ZEVpoint Charging Station","HAREDA EESL Panchkula","Audi","Audi","Range Rover"};
+//
+//        ArrayAdapter<String> stationAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, stationOptions);
+//        stationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//        binding.spinnerStation.setAdapter(stationAdapter);
+//
+//        binding.spinnerStation.setSelection(0);
+
     }
 
     private void showDatePicker() {

@@ -75,7 +75,7 @@ public class HomeFragment extends Fragment {
                     adapter.setStations(stations);
                 })
                 .addOnFailureListener(e -> {
-                    // Handle failure
+
                 });
     }
 

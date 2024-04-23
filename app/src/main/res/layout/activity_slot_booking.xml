@@ -61,6 +61,27 @@
         app:layout_constraintStart_toStartOf="@+id/spinnerCar"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
+<!--    <TextView-->
+<!--        android:id="@+id/textView17"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:text="Station"-->
+<!--        android:textSize="15sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/textView10"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/spinnerChargertype" />-->
+
+<!--    <Spinner-->
+<!--        android:id="@+id/spinnerStation"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/spinnerChargertype"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/spinnerChargertype"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView17" />-->
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
