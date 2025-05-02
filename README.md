@@ -1,7 +1,7 @@
-EVStationMap: Empowering Electric Vehicle Users
+EVStationMap: PlugPath App is Empowering Electric Vehicle Users
 
 Description:
-EVStationMap is an innovative Android app built with MVVM architecture and Java, featuring a sleek UI designed using XML. Seamlessly integrating Firebase services, including Firestore for data storage and Authentication for secure user access, the app offers a comprehensive suite of features.
+PlugPath is an innovative Android app built with MVVM architecture and Java, featuring a sleek UI designed using XML. Seamlessly integrating Firebase services, including Firestore for data storage and Authentication for secure user access, the app offers a comprehensive suite of features.
 
 Features:
 
